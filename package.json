@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.1",
+    "@fontsource/geist-mono": "^5.1.0",
     "@stripe/stripe-js": "^4.7.0",
     "lucide-react": "^0.447.0",
     "mongoose": "^8.7.0",

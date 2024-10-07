@@ -6,8 +6,8 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Admin Auth",
-	description: "Authentication to access the admin dashboard",
+	title: "Ruqiza | Store Auth",
+	description: "Ruqiza online store",
 };
 
 export default function RootLayout({
