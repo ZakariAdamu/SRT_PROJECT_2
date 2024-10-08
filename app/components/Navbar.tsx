@@ -12,12 +12,12 @@ const Navbar = () => {
 	const [dropDownMenu, setDropDownMenu] = useState(false);
 
 	return (
-		<div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-[#d9d9d9]">
+		<div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-[#fff]">
 			<Link href="/">
-				<Image src="/logo.png" alt="site logo" width={130} height={100} />
+				<Image src="/logo-beta.png" alt="site logo" width={130} height={100} />
 			</Link>
 			<div className="">
-				<Link href="/">Home Link</Link>
+				<Link href="/">Home</Link>
 			</div>
 			<div className="relative flex gap-3 items-center">
 				<Link
