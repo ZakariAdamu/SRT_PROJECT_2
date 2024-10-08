@@ -19,7 +19,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 				<p className="text-base-bold">{product.title}</p>
 				<p className="text-small">{product.category}</p>
 			</div>
-			<div>
+			<div className="flex justify-between items-center">
 				<p className="text-body-bold">${product.price}</p>
 				<button>
 					<Heart />
