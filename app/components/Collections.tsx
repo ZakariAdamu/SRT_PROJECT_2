@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCollections } from "../lib/actions";
+import { getCollections } from "../lib/actions/actions";
 import Image from "next/image";
 
 const Collections = async () => {
