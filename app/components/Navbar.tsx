@@ -5,10 +5,12 @@ import { CircleUserRound, Menu, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import useCart from "../lib/hooks/useCart";
 
 const Navbar = () => {
 	// get clerk authenticated user
 	const { user } = useUser();
+	const cart = useCart();
 	const [dropDownMenu, setDropDownMenu] = useState(false);
 
 	return (
@@ -25,7 +27,7 @@ const Navbar = () => {
 					className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
 				>
 					<ShoppingCart />
-					<p className="text-base-bold">Cart (0)</p>
+					<p className="text-base-bold">Cart ({cart.cartItems.length})</p>
 				</Link>
 				{user && (
 					<>
