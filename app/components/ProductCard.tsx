@@ -1,10 +1,6 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import HeartFavorite from "./HeartFavorite";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
