@@ -1,16 +1,52 @@
 "use client";
 import useCart from "@/app/lib/hooks/useCart";
+import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
 	const cart = useCart();
+
+	const { user } = useUser();
+	const router = useRouter();
 
 	const total = cart.cartItems.reduce(
 		(acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
 		0
 	);
 	const totalRounded = parseFloat(total.toFixed(2));
+
+	// console.log(user);
+
+	const customer = {
+		clerkId: user?.id,
+		email: user?.emailAddresses[0].emailAddress,
+		name: user?.fullName,
+	};
+
+	const handleCheckout = async () => {
+		try {
+			if (!user) {
+				router.push("/sign-in");
+				return;
+			}
+
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+				method: "POST",
+				body: JSON.stringify({ cartItems: cart.cartItems, customer }),
+			});
+			const data = await res.json();
+			// navigate to payment success or failure page
+			window.location.href = data.url;
+			console.log(data);
+
+			const session = await res.json();
+			router.push(session.url);
+		} catch (error) {
+			console.log("[checkout_POST]", error);
+		}
+	};
 
 	return (
 		// from small to max-lg screens(1024px) = col: max-lg:flex-col
@@ -81,7 +117,10 @@ const Cart = () => {
 					<span className="text-body-medium">Total Amount</span>
 					<span className="text-body-medium">${totalRounded}</span>
 				</div>
-				<button className="border text-body-bold py-3 w-full rounded-lg hover:bg-black hover:text-white">
+				<button
+					onClick={handleCheckout}
+					className="border text-body-bold py-3 w-full rounded-lg hover:bg-black hover:text-white"
+				>
 					Proceed to Checkout
 				</button>
 			</div>
