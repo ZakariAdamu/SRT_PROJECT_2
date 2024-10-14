@@ -12,7 +12,7 @@ export const GET = async (req: NextRequest) => {
 
 		let user = await User.findOne({ clerkId: userId });
 
-        // create a new user on first sign-in to the app
+		// create a new user on first sign-in to the app
 		if (!user) {
 			user = await User.create({ clerkId: userId });
 

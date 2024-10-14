@@ -119,7 +119,7 @@ const Cart = () => {
 				</div>
 				<button
 					onClick={handleCheckout}
-					className="border text-body-bold py-3 w-full rounded-lg hover:bg-black hover:text-white"
+					className="border-2 text-body-bold py-3 w-full rounded-lg hover:bg-black hover:text-white"
 				>
 					Proceed to Checkout
 				</button>
