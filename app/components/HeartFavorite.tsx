@@ -1,9 +1,11 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useUser } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 interface HeartFavoriteProps {
 	product: ProductType;
@@ -15,7 +17,6 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 	const router = useRouter();
 
 	const [loading, setLoading] = useState(false);
-	// const [signedInUser, setSignedInUser] = useState<UserType | null>(null);
 	const [isLiked, setIsLiked] = useState(false);
 
 	const getUser = async () => {
@@ -23,7 +24,6 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 			setLoading(true);
 			const res = await fetch("/api/users");
 			const data = await res.json();
-			// setSignedInUser(data);
 			setIsLiked(data.wishlist.includes(product._id));
 			setLoading(false);
 		} catch (error) {
@@ -53,17 +53,17 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 				});
 
 				const updatedUser = await res.json();
-				// setSignedInUser(updatedUser);
 				setIsLiked(updatedUser.wishlist.includes(product._id));
 
-				// if updateSignedInUser is passed as a prop, update the signed in user
 				updateSignedInUser && updateSignedInUser(updatedUser);
 			}
 		} catch (error) {
 			console.log("[wishlist_POST]", error);
 		}
 	};
-	return (
+	return loading ? (
+		<Loader />
+	) : (
 		<button onClick={handleLike}>
 			<Heart fill={`${isLiked ? "red" : "white"}`} />
 		</button>
@@ -71,5 +71,3 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 };
 
 export default HeartFavorite;
-
-export const dynamic = "force-dynamic";
