@@ -1,5 +1,3 @@
-
-
 "use client";
 export const dynamic = "force-dynamic";
 
@@ -7,7 +5,6 @@ import { useUser } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Loader from "./Loader";
 
 interface HeartFavoriteProps {
 	product: ProductType;
@@ -17,28 +14,24 @@ interface HeartFavoriteProps {
 const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 	const { user } = useUser();
 	const router = useRouter();
-
-	const [loading, setLoading] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 
 	// Fetch user's wishlist data
-	const getUser = async () => {
-		setLoading(true);
+	const fetchUserWishlist = async () => {
 		try {
 			const res = await fetch("/api/users");
 			if (!res.ok) throw new Error("Failed to fetch user data");
+
 			const data = await res.json();
 			setIsLiked(data.wishlist.includes(product._id));
 		} catch (error) {
 			console.error("[users_GET] Error fetching user data:", error);
-		} finally {
-			setLoading(false);
 		}
 	};
 
 	useEffect(() => {
 		if (user) {
-			getUser();
+			fetchUserWishlist();
 		}
 	}, [user]);
 
@@ -53,7 +46,6 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 			return;
 		}
 
-		setLoading(true);
 		try {
 			const res = await fetch("/api/users/wishlist", {
 				method: "POST",
@@ -68,19 +60,13 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 			const updatedUser = await res.json();
 			setIsLiked(updatedUser.wishlist.includes(product._id));
 
-			if (updateSignedInUser) {
-				updateSignedInUser(updatedUser);
-			}
+			updateSignedInUser?.(updatedUser); // Use nullish coalescing for safety
 		} catch (error) {
 			console.error("[wishlist_POST] Error updating wishlist:", error);
-		} finally {
-			setLoading(false);
 		}
 	};
 
-	return loading ? (
-		<Loader />
-	) : (
+	return (
 		<button onClick={handleLike}>
 			<Heart fill={isLiked ? "red" : "white"} />
 		</button>
