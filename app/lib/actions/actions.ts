@@ -1,9 +1,17 @@
-// // Get collections data from the Admin Dashboard web app(as API)
+// // Get collections data from the Admin Dashboard (as Backend API)
 export const getCollections = async () => {
 	const collections = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/collections`
 	);
 	return await collections.json();
+};
+
+// // Get a single collection via collection Id
+export const getCollectionDetails = async (collectionId: string) => {
+	const collection = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/collections/${collectionId}`
+	);
+	return await collection.json();
 };
 
 // // get all products
@@ -19,6 +27,9 @@ export const getProductDetails = async (productId: string) => {
 	);
 	return await product.json();
 };
+
+// export const dynamic = "force-dynamic";
+
 
 // Better: implementing the DRY principle: Don't Repeat Yourself
 // Helper function to make API calls and handle errors
