@@ -6,11 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import useCart from "../lib/hooks/useCart";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
 	// get clerk authenticated user
 	const { user } = useUser();
+	const pathname = usePathname();
 	const cart = useCart();
 	const [dropDownMenu, setDropDownMenu] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
@@ -22,18 +23,25 @@ const Navbar = () => {
 				<Image src="/logo-beta.png" alt="site logo" width={130} height={100} />
 			</Link>
 			<div className="flex gap-4 text-base-bold max-lg:hidden">
-				<Link href="/" className="hover:text-red-600">
+				<Link
+					href="/"
+					className={`hover:text-red-600 ${pathname === "/" && "text-red-600"}`}
+				>
 					Home
 				</Link>
 				<Link
 					href={user ? "/wishlist" : "/sign-in"}
-					className="hover:text-red-600"
+					className={`hover:text-red-600 ${
+						pathname === "/wishlist" && "text-red-600"
+					}`}
 				>
 					Wishlist
 				</Link>
 				<Link
 					href={user ? "/orders" : "/sign-in"}
-					className="hover:text-red-600"
+					className={`hover:text-red-600 ${
+						pathname === "/orders" && "text-red-600"
+					}`}
 				>
 					Orders
 				</Link>

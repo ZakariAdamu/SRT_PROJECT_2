@@ -35,38 +35,9 @@ export const getOrders = async (customerId: string) => {
 	return await orders.json();
 };
 
-// export const dynamic = "force-dynamic";
-
-// Better: implementing the DRY principle: Don't Repeat Yourself
-// Helper function to make API calls and handle errors
-// const fetchData = async (endpoint: string) => {
-// 	try {
-// 		const response = await fetch(
-// 			`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`
-// 		);
-
-// 		if (!response.ok) {
-// 			throw new Error(`Failed to fetch ${endpoint}: ${response.statusText}`);
-// 		}
-
-// 		return await response.json();
-// 	} catch (error) {
-// 		console.error(`Error fetching ${endpoint}:`, error);
-// 		throw error; // Re-throw the error for further handling if needed
-// 	}
-// };
-
-// // 1st api endpoint: Get collections
-// export const getCollections = async () => {
-// 	return await fetchData("/collections");
-// };
-
-// // 2nd api endpoint: Get all products
-// export const getProducts = async () => {
-// 	return await fetchData("/products");
-// };
-
-// // 3rd endpoint: Get a single product via product Id
-// export const getProductDetails = async (productId: string) => {
-// 	return await fetchData(`/products/${productId}`);
-// };
+export const getRelatedProducts = async (productId: string) => {
+	const relatedProducts = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related-products`
+	);
+	return await relatedProducts.json();
+};
