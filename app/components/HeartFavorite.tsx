@@ -55,7 +55,7 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 				const updatedUser = await res.json();
 				setIsLiked(updatedUser.wishlist.includes(product._id));
 
-				updateSignedInUser && updateSignedInUser(updatedUser);
+				updateSignedInUser ? updateSignedInUser(updatedUser) : null;
 			}
 		} catch (error) {
 			console.log("[wishlist_POST]", error);

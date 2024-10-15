@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import User from "@/app/lib/models/User";
 import { auth } from "@clerk/nextjs/server";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
 	try {
