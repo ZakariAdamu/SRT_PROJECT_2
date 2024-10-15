@@ -28,8 +28,14 @@ export const getProductDetails = async (productId: string) => {
 	return await product.json();
 };
 
-// export const dynamic = "force-dynamic";
+export const getOrders = async (customerId: string) => {
+	const orders = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`
+	);
+	return await orders.json();
+};
 
+// export const dynamic = "force-dynamic";
 
 // Better: implementing the DRY principle: Don't Repeat Yourself
 // Helper function to make API calls and handle errors
