@@ -1,8 +1,9 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import useCart from "@/app/lib/hooks/useCart";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 
 const SuccessfulPayment = () => {
 	// clear cart on successful payment
@@ -26,3 +27,5 @@ const SuccessfulPayment = () => {
 };
 
 export default SuccessfulPayment;
+
+

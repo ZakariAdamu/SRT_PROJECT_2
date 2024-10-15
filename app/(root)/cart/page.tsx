@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import useCart from "@/app/lib/hooks/useCart";
 import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
@@ -127,5 +129,6 @@ const Cart = () => {
 		</div>
 	);
 };
+
 
 export default Cart;

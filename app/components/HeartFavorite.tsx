@@ -71,3 +71,5 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 };
 
 export default HeartFavorite;
+
+export const dynamic = "force-dynamic";

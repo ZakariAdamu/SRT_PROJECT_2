@@ -7,3 +7,5 @@ const Loader = () => {
 };
 
 export default Loader;
+
+export const dynamic = "force-dynamic";

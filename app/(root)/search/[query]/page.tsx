@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import ProductCard from "@/app/components/ProductCard";
 
 const SearchPage = async ({ params }: { params: { query: string } }) => {

@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import Loader from "@/app/components/Loader";
 import ProductCard from "@/app/components/ProductCard";

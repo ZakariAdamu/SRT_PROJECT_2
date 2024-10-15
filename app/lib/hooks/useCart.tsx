@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { createJSONStorage, persist } from "zustand/middleware";

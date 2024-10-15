@@ -116,3 +116,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+export const dynamic = "force-dynamic";
+

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getOrders } from "@/app/lib/actions/actions";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";

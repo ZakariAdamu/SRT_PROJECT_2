@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import User from "@/app/lib/models/User";
 import { connectToDB } from "@/app/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";

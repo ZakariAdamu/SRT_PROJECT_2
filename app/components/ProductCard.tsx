@@ -34,3 +34,6 @@ const ProductCard = ({ product, updateSignedInUser }: ProductCardProps) => {
 };
 
 export default ProductCard;
+
+export const dynamic = "force-dynamic";
+
