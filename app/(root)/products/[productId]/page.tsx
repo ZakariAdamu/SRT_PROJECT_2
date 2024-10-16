@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 import Gallery from "@/app/components/Gallery";
 import ProductCard from "@/app/components/ProductCard";
