@@ -48,12 +48,12 @@ const Wishlist = () => {
 
 	useEffect(() => {
 		getWishlistProducts();
-    }, [signedInUser]);
-    
-    const updateSignedInUser = (updatedUser: UserType) => { 
-        setSignedInUser(updatedUser);
-        // setWishlist(updatedUser.wishlist);
-    }
+	}, [signedInUser]);
+
+	const updateSignedInUser = (updatedUser: UserType) => {
+		setSignedInUser(updatedUser);
+		// setWishlist(updatedUser.wishlist);
+	};
 
 	return loading ? (
 		<Loader />
@@ -62,9 +62,13 @@ const Wishlist = () => {
 			<p className="text-heading3-bold my-10">Your Wishlist</p>
 			{wishlist.length === 0 && <p>No items in your wishlist</p>}
 
-			<div className="flex flex-wrap justify-center gap-16">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 mx-auto">
 				{wishlist.map((product) => (
-					<ProductCard key={product._id} product={product} updateSignedInUser={updateSignedInUser} />
+					<ProductCard
+						key={product._id}
+						product={product}
+						updateSignedInUser={updateSignedInUser}
+					/>
 				))}
 			</div>
 		</div>
