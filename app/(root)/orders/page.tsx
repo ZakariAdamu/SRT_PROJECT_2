@@ -15,7 +15,7 @@ const Orders = async () => {
 			<p className="text-heading3-bold my-10">Your Orders</p>
 			{!orders ||
 				(orders.length === 0 && (
-					<p className="text-body-bold my-5">You have no orders yet.</p>
+					<p className="text-body-semibold my-5">You have no orders yet</p>
 				))}
 
 			<div className="flex flex-col gap-10">
