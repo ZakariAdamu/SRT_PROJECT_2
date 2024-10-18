@@ -17,6 +17,16 @@ const Navbar = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const router = useRouter();
 
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault(); // Prevent the form from refreshing the page
+
+		// Check if query is not empty before performing the search
+		if (searchQuery.trim()) {
+			// Redirect to a search results page or perform search
+			router.push(`/search/${encodeURIComponent(searchQuery)}`);
+		}
+	};
+
 	return (
 		<div className="sticky top-0 z-10 py-2 px-10 flex gap-2 justify-between items-center bg-[#fff] max-sm:px-2 ">
 			<Link href="/">
@@ -47,20 +57,22 @@ const Navbar = () => {
 				</Link>
 			</div>
 
-			{/* Search input */}
+			{/* Search input field */}
 			<div className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">
-				<input
-					className="outline-none max-sm:max-w-[120px]"
-					placeholder="Search.."
-					value={searchQuery}
-					onChange={(e) => setSearchQuery(e.target.value)}
-				/>
-				<button
-					disabled={searchQuery === ""}
-					onClick={() => router.push(`/search/${searchQuery}`)}
-				>
-					<Search className="cursor-pointer h-4 w-4 hover:text-red-600" />
-				</button>
+				<form onSubmit={handleSubmit}>
+					<input
+						placeholder="Search"
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+						className="outline-none max-sm:max-w-[120px]"
+					/>
+					<button
+						disabled={searchQuery === ""}
+						onClick={() => router.push(`/search/${searchQuery}`)}
+					>
+						<Search className="cursor-pointer h-4 w-4 hover:text-red-600" />
+					</button>
+				</form>
 			</div>
 
 			<div className="relative flex gap-3 items-center">
@@ -118,4 +130,3 @@ const Navbar = () => {
 export default Navbar;
 
 export const dynamic = "force-dynamic";
-
