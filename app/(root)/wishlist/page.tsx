@@ -55,7 +55,7 @@ const Wishlist = () => {
 	};
 
 	return loading ? (
-		<Loader />
+		<Loader loading={loading} />
 	) : (
 		<div className="px-10 py-5">
 			<p className="text-heading3-bold my-10">Your Wishlist</p>

@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import User from "@/app/lib/models/User";
 import { connectToDB } from "@/app/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
@@ -10,7 +8,7 @@ export const POST = async (req: NextRequest) => {
 		const { userId } = auth();
 
 		if (!userId) {
-			return new NextResponse("Unauthorized, please sing in", { status: 401 });
+			return new NextResponse("Unauthorized, please sign in", { status: 401 });
 		}
 
 		await connectToDB();
@@ -42,3 +40,5 @@ export const POST = async (req: NextRequest) => {
 		return new NextResponse("Internal Server Error", { status: 500 });
 	}
 };
+
+export const dynamic = "force-dynamic";
