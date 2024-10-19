@@ -1,12 +1,30 @@
 // later change all API calls / actions to use try catch block
 export const getCollections = async () => {
-	const collections = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/collections`
-	);
-	return await collections.json();
+	try {
+		const collections = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}/collections`,
+
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				cache: "force-cache", // You can also use 'no-store' or 'stale-while-revalidate'
+			}
+		);
+		if (!collections.ok) {
+			throw new Error(`Error: ${collections.status}`);
+		}
+
+		const collectionsData = await collections.json();
+
+		return collectionsData;
+	} catch (error) {
+		console.error("Failed to fetch collections:", error);
+	}
 };
 
-// // Get a single collection via collection Id
+// -- Get a single collection via collection Id
 export const getCollectionDetails = async (collectionId: string) => {
 	try {
 		// Use fetch with options to control timeouts and caching
@@ -38,7 +56,7 @@ export const getCollectionDetails = async (collectionId: string) => {
 	}
 };
 
-// // get all products
+// ** get all products
 // export const getProducts = async () => {
 // 	const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
 // 	return await products.json();
@@ -75,7 +93,7 @@ export const getProducts = async () => {
 	}
 };
 
-//  get a single product via product Id
+// ** get a single product via product Id
 export const getProductDetails = async (productId: string) => {
 	const product = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`
@@ -106,6 +124,7 @@ export const getOrders = async (customerId: string) => {
 	}
 };
 
+// ** get related products
 export const getRelatedProducts = async (productId: string) => {
 	const relatedProducts = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`
