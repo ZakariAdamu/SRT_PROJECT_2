@@ -14,7 +14,7 @@ const SearchPage = async ({ params }: { params: { query: string } }) => {
 			</p>
 			{!searchedProducts ||
 				(searchedProducts.length === 0 && (
-					<p className="text-body-bold my-5">No result found</p>
+					<p className="text-body-medium my-5">No result found</p>
 				))}
 
 			<div className="flex flex-wrap justify-center gap-16">
