@@ -5,14 +5,14 @@ const ChatBot = () => {
 	useEffect(() => {
 		// Add the chatbot configuration script
 		const chatbotConfigScript = document.createElement("script");
-		chatbotConfigScript.innerHTML = `window.chtlConfig = { chatbotId: "1866789818" }`;
+		chatbotConfigScript.innerHTML = `window.chtlConfig = { chatbotId: "3739578948" }`;
 		document.head.appendChild(chatbotConfigScript);
 
 		// Add the chatbot embed script
 		const chatlingScript = document.createElement("script");
 		chatlingScript.async = true;
 		chatlingScript.src = "https://chatling.ai/js/embed.js";
-		chatlingScript.setAttribute("data-id", "1866789818");
+		chatlingScript.setAttribute("data-id", "3739578948");
 		chatlingScript.setAttribute("id", "chatling-embed-script");
 		chatlingScript.setAttribute("type", "text/javascript");
 		document.head.appendChild(chatlingScript);
